@@ -14,20 +14,20 @@ CREATE TABLE user_data
     AUTO_INCREMENT NOT NULL,
     -- user's first name
     firstname VARCHAR
-    (255),
+    (255) NOT NULL,
     -- user's last name
     lastname VARCHAR
-    (255),
+    (255) NOT NULL,
     -- username
     username VARCHAR
-    (255),
+    (255) NOT NULL,
     -- hashed password
     hashedpw VARCHAR
-    (255),
+    (255) NOT NULL,
     -- user's email address
     email VARCHAR
-    (255),
-    -- default location saved each time a user logs in
+    (255) NOT NULL,
+    -- most recent default location - saved each time a user logs in (overwrites previous)
     defaultlocation VARCHAR
     (255),
     -- user's favorites

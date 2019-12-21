@@ -1,11 +1,20 @@
+// npm dotenv - 
 require("dotenv").config();
-var express = require("express");
-var exphbs = require("express-handlebars");
 
-var db = require("./models");
+// npm express - 
+const express = require("express");
 
-var app = express();
-var PORT = process.env.PORT || 3000;
+// npm express-handlebars - 
+const exphbs = require("express-handlebars");
+
+// require models folder - defaults to index.js
+const db = require("./models");
+
+//
+const app = express();
+
+//
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
@@ -25,6 +34,7 @@ app.set("view engine", "handlebars");
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
+// 
 var syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true
@@ -34,8 +44,8 @@ if (process.env.NODE_ENV === "test") {
 }
 
 // Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function() {
-  app.listen(PORT, function() {
+db.sequelize.sync(syncOptions).then(function () {
+  app.listen(PORT, function () {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
       PORT,
