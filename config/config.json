@@ -1,14 +1,14 @@
 {
   "development": {
     "username": "root",
-    "password": "Esherichia666",
+    "password": null,
     "database": "lookout_db",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": "Esherichia666",
+    "password": null,
     "database": "lookout_db",
     "host": "localhost",
     "dialect": "mysql",
