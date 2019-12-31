@@ -12,6 +12,18 @@ module.exports = function (app) {
     });
   });
 
+  // existing user login
+  app.get("/login/:username/:password", function (req, res) {
+    db.Users.findOne({
+      where: {
+        username: req.body.username,
+        password: req.body.password
+      }
+    }).then(function (response) {
+      res.json(response);
+    });
+  });
+
   // create a new user
   app.post("/create/user", function (req, res) {
     let myPlaintextPassword = req.body.password;
@@ -24,9 +36,17 @@ module.exports = function (app) {
         if (err) {
           throw err;
         }
+        // need to fill in missing fields
         db.User.create({
           username: req.body.username,
-          userpw: hash
+          firstname: req.body.firtname,
+          lastname: req.body.lastname,
+          userpw: hash,
+          email: req.body.email,
+          // defaultlocation: ,
+          // favorites: [],
+          // created: ,
+          // lastlogin:
         }).then(function (response) {
           res.json({ status: "success" });
           console.log(response);
