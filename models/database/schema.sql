@@ -21,8 +21,8 @@ CREATE TABLE user_data
     -- username
     username VARCHAR
     (255) NOT NULL,
-    -- hashed password
-    hashedpw VARCHAR
+    -- user's password
+    userpw VARCHAR
     (255) NOT NULL,
     -- user's email address
     email VARCHAR
@@ -35,8 +35,6 @@ CREATE TABLE user_data
     (255),
     -- date and time the user was created
     created DATETIME,
-    -- date and time the user's information was last updated
-    updated DATETIME,
     -- date and time the user last logged in
     lastlogin DATETIME,
     PRIMARY KEY

@@ -1,7 +1,7 @@
 {
-  "name": "node-handlebars-boilerplate",
+  "name": "lookout",
   "version": "1.0.0",
-  "description": "Project 2 Starter",
+  "description": "An application to keep track of crime an your area",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -9,6 +9,19 @@
     "fix": "eslint --fix .",
     "test": "npm run lint && cross-env NODE_ENV=test mocha -u tdd --reporter spec --exit"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MR-Stan/Look-Out"
+  },
+  "keywords": [
+    "crime"
+  ],
+  "contributors": [
+    "Mike Stanley",
+    "Mark Sterrenberg",
+    "Jessica Hoxworth",
+    "Anthony Pricer"
+  ],
   "license": "ISC",
   "dependencies": {
     "dotenv": "^8.0.0",
