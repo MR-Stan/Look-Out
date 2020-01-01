@@ -5,12 +5,12 @@ const db = require("../models");
 const bcrypt = require("bcryptjs");
 
 module.exports = function (app) {
-  // get all crime data
-  app.get("/", function (req, res) {
-    db.User.findAll({}).then(function (dbExamples) {
-      res.json(dbExamples);
-    });
-  });
+  // get all user data
+  // app.get("/", function (req, res) {
+  //   db.User.findAll({}).then(function (dbExamples) {
+  //     res.json(dbExamples);
+  //   });
+  // });
 
   // existing user login
   app.get("/login/:username/:password", function (req, res) {

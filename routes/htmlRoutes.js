@@ -1,9 +1,25 @@
-var db = require("../models");
+const user = require("../models");
 
 module.exports = function (app) {
-  // load index page
+  // app.get("/", function (req, res) {
+  //   user.all(function (data) {
+  //     const hbsObject = {
+  //       users: data
+  //     }
+  //     console.log(hbsObject);
+  //     res.render("index", hbsObject);
+  //   });
+  // });
+
+  // load main.handlebars body = index.handlebars
+  app.get('/', (req, res) => {
+    res.render('index');
+  });
+
+
+  //
   app.get("/", function (req, res) {
-    db.Example.findAll({}).then(function (dbExamples) {
+    models.Example.findAll({}).then(function (dbExamples) {
       res.render("index", {
         msg: "Welcome!",
         examples: dbExamples
@@ -13,7 +29,7 @@ module.exports = function (app) {
 
   // load example page and pass in an example by id
   app.get("/example/:id", function (req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function (dbExample) {
+    models.Example.findOne({ where: { id: req.params.id } }).then(function (dbExample) {
       res.render("example", {
         example: dbExample
       });

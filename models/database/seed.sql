@@ -1,6 +1,6 @@
 -- faux data for development - lookout_db
-INSERT INTO user_data
-    (firstname, lastname, username, hashedpw, email, defaultlocation)
+INSERT INTO users
+    (username, firstname, lastname, userpw, email)
 VALUES
-    ("Jon", "Doe", "jdoe", "hashes", "jdoe@gmail.com", "location"),
-    ("Jane", "Doh", "jdoh", "hashes", "jdoh@gmail.com", "location");
+    ("Jon", "Doe", "jdoe", "hashes", "jdoe@gmail.com");
+   

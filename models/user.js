@@ -5,7 +5,7 @@ module.exports = function (sequelize, DataTypes) {
 
     // autoincrementing primary key (id)
     id: {
-      type: sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true
     },
@@ -81,23 +81,6 @@ module.exports = function (sequelize, DataTypes) {
     favorites: DataTypes.STRING,
     // UPDATE
 
-    // date and time the user was created
-    created: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-      validate: {
-        isDate: true
-      }
-    },
-
-    // date and time the user last logged in - needs to overwrite on login
-    lastlogin: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-      validate: {
-        isDate: true
-      }
-    }
   });
 
   return User;
