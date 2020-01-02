@@ -1,9 +1,9 @@
-const user = require("../models");
+// const user = require("../models");
 
 module.exports = function (app) {
 
   // load main.handlebars body = index.handlebars
-  app.get('/', (req, res) => {
+  app.get('/', jwtCheck, (req, res) => {
     res.render('home');
   });
 
@@ -21,6 +21,6 @@ module.exports = function (app) {
   app.get("*", function (req, res) {
     res.render("404");
   });
-  
+
 };
 
