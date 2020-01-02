@@ -1,8 +1,7 @@
 {
   "development": {
     "username": "root",
-    // change null to your local password
-    "password": null,
+    "password": "Esherichia666",
     "database": "lookout_db",
     "host": "localhost",
     "dialect": "mysql"

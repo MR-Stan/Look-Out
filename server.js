@@ -1,8 +1,9 @@
-// npm dotenv - 
-require("dotenv").config();
-
 // Dependencies
 // ----------------------------------------------------
+
+// npm dotenv -
+require("dotenv").config();
+
 // npm express -
 const express = require("express");
 
@@ -31,7 +32,9 @@ app.use(express.static("public"));
 app.engine(
   "handlebars",
   exphbs({
-    defaultLayout: "main"
+    defaultLayout: "main",
+    layoutsDir: __dirname + '/views/layouts/',
+    partialsDir: __dirname + '/views/partials/'
   })
 );
 app.set("view engine", "handlebars");

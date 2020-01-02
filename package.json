@@ -31,6 +31,7 @@
     "googleapis": "^46.0.0",
     "mysql2": "^1.6.5",
     "path": "^0.12.7",
+    "request": "^2.88.0",
     "sequelize": "^5.8.6"
   },
   "devDependencies": {
