@@ -8,17 +8,14 @@ module.exports = function (app) {
     // obtain jwt from cookie
     const token = req.cookies.jwt;
 
-    // decode token
-    const decoded = jwt.verify(token, "secretkey");
-
-    // if the decoded token contains an id then render home.handlebars
-    if (decoded.id) {
-      res.render('home');
+    // if jwt.verify does not yield an error then render home.handlebars
+    try {
+      const decoded = jwt.verify(token, "secretkey");
+      res.render("home");
     }
-    else {
-      // needs to open reroute to log in modal
-      // !!!!! this is not rendering, it's staying on the error page
-      res.render("login");
+    // if jwt.verify yields an error then yield login.handlebars
+    catch (err) {
+      res.redirect("/login");
     }
   });
 
