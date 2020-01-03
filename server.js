@@ -1,32 +1,26 @@
 // Dependencies
 // ----------------------------------------------------
 
-// npm dotenv -
-require("dotenv").config();
-
-// npm express -
+// npm express - web framework for node
 const express = require("express");
 
-// npm express-handlebars - 
+// npm express-handlebars - handlebars templating engine for express
 const exphbs = require("express-handlebars");
 
-// const jwt = require("jsonwebtoken");
-
+// npm cors - enables cross origin resource sharing
 const cors = require("cors");
 
+// npm cookie-parser - parse HTTP request cookies
 const cookieParser = require("cookie-parser");
-
-// npm bcrypt used to hash password
-// const bcrypt = require("bcryptjs");
 
 // require models folder - defaults to index.js
 const db = require("./models");
 // ----------------------------------------------------
 
-//
+// starting the server
 const app = express();
 
-//
+// setting the port
 const PORT = process.env.PORT || 3000;
 
 // Middleware
