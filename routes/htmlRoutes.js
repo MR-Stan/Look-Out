@@ -1,12 +1,4 @@
-// const expressjwt = require("express-jwt");
-
-// const jwtCheck = expressjwt({
-//   secret: "secretkey"
-// });
-
 const jwt = require("jsonwebtoken");
-
-
 
 module.exports = function (app) {
 
@@ -25,7 +17,8 @@ module.exports = function (app) {
     }
     else {
       // needs to open reroute to log in modal
-      console.log("Authentication error");
+      // !!!!! this is not rendering, it's staying on the error page
+      res.render("login");
     }
   });
 

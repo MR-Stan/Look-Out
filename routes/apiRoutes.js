@@ -18,7 +18,7 @@ module.exports = function (app) {
       // if the username and password are found in the database
     }).then((response) => {
       //console.log(response.dataValues);
-      // create JWT
+      // create json web token
       jwt.sign({
         id: response.dataValues.id,
         username: response.dataValues.username
@@ -39,7 +39,7 @@ module.exports = function (app) {
     });
   });
 
-  // // create a new user
+  // create a new user
   app.post("/create/user", (req, res) => {
     let textPassword = req.body.password;
     // salt round = cost factor i.e. how much time is needed to calculate a single bcrypt hash
@@ -68,6 +68,26 @@ module.exports = function (app) {
         });
       });
     });
+  });
+
+  // log out user and clear cookies
+  app.post("/logout", (req, res) => {
+
+    // set cookie to all req.cookies
+    cookie = req.cookies;
+
+    // check if cookies have prop attribute
+    for (var prop in cookie) {
+      if (!cookie.hasOwnProperty(prop)) {
+        continue;
+      }
+      // if so, change expiration date to now
+      res.cookie(prop, '', { expires: new Date(0) });
+    }
+
+    // redirect to login
+    res.redirect('/login');
+
   });
 
   // // delete a user by id
