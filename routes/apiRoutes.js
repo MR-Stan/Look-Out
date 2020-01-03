@@ -1,6 +1,5 @@
-// should be able to delete, found in server.js
-// const db = require("../models");
-const expressjwt = require("express-jwt");
+const db = require("../models");
+const jwt = require("jsonwebtoken");
 
 module.exports = function (app) {
 
@@ -18,28 +17,37 @@ module.exports = function (app) {
       }
       // if the username and password are found in the database
     }).then((response) => {
-      console.log(response.dataValues);
-      // jwt - need to edit
-      const token = jwt.sign({
-        sub: user.id,
-        username: user.username
-      }, "mykey", { expiresIn: "3 hours" });
-      res.status(200).send({ access_token: token })
+      //console.log(response.dataValues);
+      // create JWT
+      jwt.sign({
+        id: response.dataValues.id,
+        username: response.dataValues.username
+      }, "secretkey", (err, token) => {
+        res
+          // asset created status
+          .status(201)
+          // create cookie
+          .cookie('jwt', token, {
+            // cookie expires after 8 hours
+            expires: new Date(Date.now() + 8 * 3600000)
+          }).redirect('/')
+      });
       // if the username and password combination do not exist in the database
     }).catch((err) => {
-      console.log("Incorrect username or password.");
+      console.log(err);
+      //console.log("Incorrect username or password.");
     });
   });
 
   // // create a new user
   app.post("/create/user", (req, res) => {
-    let myPlaintextPassword = req.body.password;
+    let textPassword = req.body.password;
     // salt round = cost factor i.e. how much time is needed to calculate a single bcrypt hash
     // increasing the cost factor by 1 doubles the necessary time
     // more time means harder to brute force crack the password
     const saltRounds = 10;
     bcrypt.genSalt(saltRounds, function (err, salt) {
-      bcrypt.hash(myPlaintextPassword, salt, function (err, hash) {
+      bcrypt.hash(textPassword, salt, function (err, hash) {
         if (err) {
           throw err;
         }
@@ -68,4 +76,4 @@ module.exports = function (app) {
   //     res.json(dbExample);
   //   });
   // });
-};
+}

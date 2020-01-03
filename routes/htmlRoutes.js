@@ -1,10 +1,32 @@
-// const user = require("../models");
+// const expressjwt = require("express-jwt");
+
+// const jwtCheck = expressjwt({
+//   secret: "secretkey"
+// });
+
+const jwt = require("jsonwebtoken");
+
+
 
 module.exports = function (app) {
 
-  // load main.handlebars body = index.handlebars
-  app.get('/', jwtCheck, (req, res) => {
-    res.render('home');
+  // render home page if user is authenticated
+  app.get('/', (req, res) => {
+
+    // obtain jwt from cookie
+    const token = req.cookies.jwt;
+
+    // decode token
+    const decoded = jwt.verify(token, "secretkey");
+
+    // if the decoded token contains an id then render home.handlebars
+    if (decoded.id) {
+      res.render('home');
+    }
+    else {
+      // needs to open reroute to log in modal
+      console.log("Authentication error");
+    }
   });
 
   // render login page - need to make this a modal that pops up if not logged in

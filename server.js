@@ -10,12 +10,14 @@ const express = require("express");
 // npm express-handlebars - 
 const exphbs = require("express-handlebars");
 
-const jwt = require("jsonwebtoken");
+// const jwt = require("jsonwebtoken");
 
 const cors = require("cors");
 
+const cookieParser = require("cookie-parser");
+
 // npm bcrypt used to hash password
-const bcrypt = require("bcryptjs");
+// const bcrypt = require("bcryptjs");
 
 // require models folder - defaults to index.js
 const db = require("./models");
@@ -33,6 +35,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
 app.use(cors());
+app.use(cookieParser());
 // ----------------------------------------------------
 
 // Handlebars
