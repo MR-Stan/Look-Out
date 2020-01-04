@@ -19,12 +19,12 @@ module.exports = function (app) {
     }
   });
 
-  // render login page - need to make this a modal that pops up if not logged in
+  // render log in modal
   app.get("/login", function (req, res) {
     res.render("login");
   });
 
-  // render signup page
+  // render sign up modal
   app.get("/signup", function (req, res) {
     res.render("signup");
   });

@@ -70,7 +70,7 @@ module.exports = function (app) {
     });
   });
 
-  // log out user and clear cookies
+  // log out and clear cookies
   app.post("/logout", (req, res) => {
 
     // set cookie to all req.cookies
@@ -96,4 +96,20 @@ module.exports = function (app) {
   //     res.json(dbExample);
   //   });
   // });
+
+  // change location
+  app.post("/location", (req, res) => {
+
+  });
+
+  // get user's favorites
+  app.get("/favorites", (req, res) => {
+
+  });
+
+  // add a favorite
+  app.get("/favorites", (req, res) => {
+
+  });
+
 }
