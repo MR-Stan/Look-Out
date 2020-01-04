@@ -1,24 +1,40 @@
 // Dependencies
 // ----------------------------------------------------
 
+// npm path - joins paths with out platform specific delimiters
+const path = require("path");
+
 // npm express - web framework for node
-const express = require("express");
+const express = require('express');
 
 // npm express-handlebars - handlebars templating engine for express
-const exphbs = require("express-handlebars");
+const exphbs = require('express-handlebars');
 
 // npm cors - enables cross origin resource sharing
-const cors = require("cors");
+const cors = require('cors');
 
 // npm cookie-parser - parse HTTP request cookies
-const cookieParser = require("cookie-parser");
+const cookieParser = require('cookie-parser');
 
 // require models folder - defaults to index.js
-const db = require("./models");
+const db = require('./models');
 // ----------------------------------------------------
 
 // starting the server
-const app = express();
+// const app = express();
+const app = express(),
+
+  hbs = exphbs.create({
+
+    defaultLayout: 'main',
+    helpers: {
+      section: function (name, options) {
+        if (!this._sections) { this._sections = {} };
+        this._sections[name] = options.fn(this);
+        return null;
+      }
+    }
+  });
 
 // setting the port
 const PORT = process.env.PORT || 3000;
@@ -27,28 +43,22 @@ const PORT = process.env.PORT || 3000;
 // ----------------------------------------------------
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(express.static("public"));
+app.use(express.static('public'));
 app.use(cors());
 app.use(cookieParser());
 // ----------------------------------------------------
 
 // Handlebars
 // ----------------------------------------------------
-app.engine(
-  "handlebars",
-  exphbs({
-    defaultLayout: "main",
-    layoutsDir: __dirname + '/views/layouts/',
-    partialsDir: __dirname + '/views/partials/'
-  })
-);
-app.set("view engine", "handlebars");
+app.set('views', path.join(__dirname, 'views'));
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
 // ----------------------------------------------------
 
 // Routes
 // ----------------------------------------------------
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
+require('./routes/apiRoutes')(app);
+require('./routes/htmlRoutes')(app);
 // ----------------------------------------------------
 
 // 
@@ -56,7 +66,7 @@ var syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
-if (process.env.NODE_ENV === "test") {
+if (process.env.NODE_ENV === 'test') {
   syncOptions.force = true;
 }
 
@@ -64,7 +74,7 @@ if (process.env.NODE_ENV === "test") {
 db.sequelize.sync(syncOptions).then(function () {
   app.listen(PORT, function () {
     console.log(
-      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+      '==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.',
       PORT,
       PORT
     );

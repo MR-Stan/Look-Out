@@ -10,7 +10,7 @@ module.exports = function (app) {
 
     // if jwt.verify does not yield an error then render home.handlebars
     try {
-      const decoded = jwt.verify(token, "secretkey");
+      jwt.verify(token, "secretkey");
       res.render("home");
     }
     // if jwt.verify yields an error then yield login.handlebars
