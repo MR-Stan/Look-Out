@@ -26,11 +26,16 @@ const app = express(),
 
   hbs = exphbs.create({
 
+    // default layout is main.handlebars
     defaultLayout: 'main',
+
+    // hbs helpers
     helpers: {
-      section: function (name, options) {
-        if (!this._sections) { this._sections = {} };
-        this._sections[name] = options.fn(this);
+
+      // helper for log in modal
+      loginModal: function (name, options) {
+        if (!this._loginModal) { this._loginModal = {} };
+        this._loginModal[name] = options.fn(this);
         return null;
       }
     }

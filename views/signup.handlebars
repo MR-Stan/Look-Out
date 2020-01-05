@@ -1,43 +1,62 @@
-<link rel="stylesheet" href="public/styles/signup.css">
-<div class="container-fluid">
-    <div class="row no-gutter">
-        <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
-        <div class="col-md-8 col-lg-6">
-            <div class="login d-flex align-items-center py-5">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-9 col-lg-8 mx-auto">
-                            <h3 class="login-heading mb-4">Sign up</h3>
-                            {{msg}}
-                            <form method="POST" action="create/user">
-                                <div class="form-label-group">
-                                    <input type="email" id="inputEmail" name="email" class="form-control"
-                                        placeholder="Email address" required autofocus>
-                                    <label for="inputEmail">Email address</label>
-                                </div>
+<!DOCTYPE html>
+<html lang="en">
 
-                                <div class="form-label-group">
-                                    <input type="password" id="inputPassword" name="password" class="form-control"
-                                        placeholder="Password" required>
-                                    <label for="inputPassword">Password</label>
-                                </div>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sign up Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    {{!-- <link rel="stylesheet" type="text/css" href="../styles/signup.css"> --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
 
-                                <div class="custom-control custom-checkbox mb-3">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                    <label class="custom-control-label" for="customCheck1">Remember password</label>
-                                </div>
-                                <button
-                                    class="btn btn-lg btn-primary btn-block btn-signup text-uppercase font-weight-bold mb-2"
-                                    type="submit">Sign up</button>
-                                <div class="text-center">
-                                    <a class="small" href="#">Log in</a></div>
-                            </form>
-                        </div>
+<body>
+    <div class="login-form">
+        <div class="modal inmodal fade" data-keyboard="false" id="signUpModal" tabindex="-1" role="dialog"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+
+                        <form method="POST" action="create/user">
+                            <h2 class="text-center">Sign Up</h2>
+
+                            <div class="form-label-group">
+                                <input type="email" id="inputEmail" name="email" class="form-control"
+                                    placeholder="Email address" required autofocus>
+                                <label for="inputEmail">Email address</label>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="password" id="inputPassword" name="password" class="form-control"
+                                    placeholder="Password" required>
+                                <label for="inputPassword">Password</label>
+                            </div>
+
+                            <div class="custom-control custom-checkbox mb-3">
+                                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                <label class="custom-control-label" for="customCheck1">Remember password</label>
+                            </div>
+
+                            <button
+                                class="btn btn-lg btn-primary btn-block btn-signup text-uppercase font-weight-bold mb-2"
+                                type="submit">Sign up</button>
+
+                            <div class="text-center">
+                                <a class="small" href="/login">Log in</a>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="js/signup.js"></script>
+
+</body>
+
+<script src="/js/signup.js"></script>
+
+</html>

@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sign in Form</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../styles/login.css">
+    {{!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../styles/login.css"> --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -54,7 +54,8 @@
                                 <a href="#" class="btn btn-danger"><i class="fa fa-google"></i>&nbsp; Google</a>
                             </div>
                         </form>
-                        <p class="text-center text-muted small">Don't have an account? <a href="#">Sign up here!</a></p>
+                        <p class="text-center text-muted small">Don't have an account? <a href="/signup">Sign up
+                                here!</a></p>
                     </div>
                 </div>
             </div>
@@ -62,9 +63,9 @@
     </div>
 
     {{!-- login modal script --}}
-    {{#section 'script'}}
+    {{#loginModal 'script'}}
     <script type="text/javascript" src="/js/login.js"></script>
-    {{/section}}
+    {{/loginModal}}
 
 </body>
 
