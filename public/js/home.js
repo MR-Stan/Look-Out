@@ -1,18 +1,60 @@
+let map;
+
+let infoWindow;
+
+let marker;
+
+// set to user's default location from database
+let pos = { lat: -34.397, lng: 150.644 };
+
 function initMap() {
-    // The location of Uluru
-    const uluru = {
-        lat: -25.344,
-        lng: 131.036
-    };
-    // The map, centered at Uluru
-    const map = new google.maps.Map(
+    // map center and zoom
+    map = new google.maps.Map(
         document.getElementById('map'), {
-        zoom: 4,
-        center: uluru
+        zoom: 14,
+        center: pos
     });
-    // The marker, positioned at Uluru
-    const marker = new google.maps.Marker({
-        position: uluru,
-        map: map
+    // marker location
+    marker = new google.maps.Marker({
+        position: pos,
+        map: map,
+        animation: google.maps.Animation.DROP
     });
+    infoWindow = new google.maps.InfoWindow;
+    marker.addListener('click', toggleBounce);
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+
+            infoWindow.open(map);
+            map.setCenter(pos);
+            // updates marker location
+            marker.setPosition(pos);
+        }, function () {
+            handleLocationError(true, infoWindow, map.getCenter());
+        });
+    } else {
+        // Browser doesn't support Geolocation
+        handleLocationError(false, infoWindow, map.getCenter());
+    }
+}
+
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    infoWindow.setPosition(pos);
+    infoWindow.setContent(browserHasGeolocation ?
+        'Error: The Geolocation service failed.' :
+        'Error: Your browser doesn\'t support geolocation.');
+    infoWindow.open(map);
+}
+
+function toggleBounce() {
+    if (marker.getAnimation() !== null) {
+        marker.setAnimation(null);
+    } else {
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+    }
 }
