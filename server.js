@@ -18,6 +18,8 @@ const cookieParser = require('cookie-parser');
 
 // require models folder - defaults to index.js
 const db = require('./models');
+
+
 // ----------------------------------------------------
 
 // starting the server

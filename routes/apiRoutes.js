@@ -1,5 +1,11 @@
+// database
 const db = require("../models");
+
+// npm jsonwebtoken - JSON Web Tokens for authentication
 const jwt = require("jsonwebtoken");
+
+// npm bcryptjs - password encryption
+const bcrypt = require('bcryptjs');
 
 module.exports = function (app) {
 
@@ -8,34 +14,49 @@ module.exports = function (app) {
     res.redirect('/login/' + req.body.username + '/' + req.body.password)
   });
 
-  // existing user login
+  // user login
   app.get("/login/:username/:password", (req, res) => {
+    // check db for username
     db.User.findOne({
       where: {
-        username: req.params.username,
-        userpw: req.params.password
+        username: req.params.username
       }
-      // if the username and password are found in the database
-    }).then((response) => {
-      //console.log(response.dataValues);
-      // create json web token
-      jwt.sign({
-        id: response.dataValues.id,
-        username: response.dataValues.username
-      }, "secretkey", (err, token) => {
-        res
-          // asset created status
-          .status(201)
-          // create cookie
-          .cookie('jwt', token, {
-            // cookie expires after 8 hours
-            expires: new Date(Date.now() + 8 * 3600000)
-          }).redirect('/')
-      });
-      // if the username and password combination do not exist in the database
-    }).catch((err) => {
-      console.log(err);
-      //console.log("Incorrect username or password.");
+    }).then(function (user) {
+      // if username does not exist
+      if (!user) {
+        // redirect to login modal
+        // need to add text saying username not found
+        res.redirect('/login');
+      }
+      // if username exists
+      else {
+        // compare input pw with stored hash pw
+        bcrypt.compare(req.params.password, user.userpw, function (err, response) {
+          // if passwords match
+          if (response) {
+            // sign the json web token
+            jwt.sign({
+              id: user.id,
+              username: user.username
+            }, "secretkey", (err, token) => {
+              res
+                // asset created status
+                .status(201)
+                // create cookie
+                .cookie('jwt', token, {
+                  // cookie expires after 8 hours
+                  expires: new Date(Date.now() + 8 * 3600000)
+                }).redirect('/')
+            });
+          }
+          // if passwords do not match
+          else {
+            // redirect to login modal
+            // need to add text saying passwords do not match
+            res.redirect('/login');
+          }
+        });
+      }
     });
   });
 
@@ -54,17 +75,16 @@ module.exports = function (app) {
         // need to fill in missing fields
         db.User.create({
           username: req.body.username,
-          firstname: req.body.firtname,
-          lastname: req.body.lastname,
           userpw: hash,
+          firstname: req.body.firstname,
+          lastname: req.body.lastname,
           email: req.body.email,
           // defaultlocation: ,
           // favorites: [],
-          // created: ,
-          // lastlogin:
         }).then(function (response) {
-          res.json({ status: "success" });
-          console.log(response);
+          if (response) {
+            res.redirect('/');
+          }
         });
       });
     });
@@ -108,7 +128,7 @@ module.exports = function (app) {
   });
 
   // add a favorite
-  app.get("/favorites", (req, res) => {
+  app.get("/favorites/add", (req, res) => {
 
   });
 
