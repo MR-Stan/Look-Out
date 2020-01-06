@@ -22,7 +22,7 @@ function initMap() {
     });
     infoWindow = new google.maps.InfoWindow;
     marker.addListener('click', toggleBounce);
-
+    // if browser supports geolocation
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
             pos = {
@@ -34,15 +34,24 @@ function initMap() {
             map.setCenter(pos);
             // updates marker location
             marker.setPosition(pos);
+
+            // sending location data to apiRoutes.js
+            $.ajax({
+                type: 'POST',
+                url: '/current/location',
+                data: pos
+            });
+
         }, function () {
             handleLocationError(true, infoWindow, map.getCenter());
         });
     } else {
-        // Browser doesn't support Geolocation
+        // browser doesn't support Geolocation
         handleLocationError(false, infoWindow, map.getCenter());
     }
 }
 
+// location error
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
     infoWindow.setContent(browserHasGeolocation ?
@@ -51,6 +60,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.open(map);
 }
 
+// marker bounce animation
 function toggleBounce() {
     if (marker.getAnimation() !== null) {
         marker.setAnimation(null);

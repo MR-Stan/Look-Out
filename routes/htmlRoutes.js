@@ -20,19 +20,18 @@ module.exports = function (app) {
   });
 
   // render log in modal
-  app.get("/login", function (req, res) {
+  app.get("/login", (req, res) => {
     res.render("login");
   });
 
   // render sign up modal
-  app.get("/signup", function (req, res) {
+  app.get("/signup", (req, res) => {
     res.render("signup");
   });
 
-  // render 404 page for any unmatched routes
+   // render 404 page for any unmatched routes
   app.get("*", function (req, res) {
     res.render("404");
   });
-
 };
 

@@ -132,4 +132,9 @@ module.exports = function (app) {
 
   });
 
+  // location data
+  app.post("/current/location", (req, res) => {
+    console.log(req.body);
+  });
+
 }
