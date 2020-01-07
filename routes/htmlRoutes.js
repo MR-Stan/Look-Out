@@ -29,7 +29,12 @@ module.exports = function (app) {
     res.render("signup");
   });
 
-   // render 404 page for any unmatched routes
+  // render change location modal
+  app.get("/location", (req, res) => {
+    res.render("location");
+  });
+
+  // render 404 page for any unmatched routes
   app.get("*", function (req, res) {
     res.render("404");
   });

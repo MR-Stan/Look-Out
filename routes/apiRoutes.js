@@ -1,8 +1,8 @@
 // database
-const db = require("../models");
+const db = require('../models');
 
 // npm jsonwebtoken - JSON Web Tokens for authentication
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken');
 
 // npm bcryptjs - password encryption
 const bcrypt = require('bcryptjs');
@@ -10,12 +10,12 @@ const bcrypt = require('bcryptjs');
 module.exports = function (app) {
 
   // parsing form data
-  app.post("/login/submit", (req, res) => {
+  app.post('/login/submit', (req, res) => {
     res.redirect('/login/' + req.body.username + '/' + req.body.password)
   });
 
   // user login
-  app.get("/login/:username/:password", (req, res) => {
+  app.get('/login/:username/:password', (req, res) => {
     // check db for username
     db.User.findOne({
       where: {
@@ -38,7 +38,7 @@ module.exports = function (app) {
             jwt.sign({
               id: user.id,
               username: user.username
-            }, "secretkey", (err, token) => {
+            }, 'secretkey', (err, token) => {
               res
                 // asset created status
                 .status(201)
@@ -61,7 +61,7 @@ module.exports = function (app) {
   });
 
   // create a new user
-  app.post("/create/user", (req, res) => {
+  app.post('/create/user', (req, res) => {
     let textPassword = req.body.password;
     // salt round = cost factor i.e. how much time is needed to calculate a single bcrypt hash
     // increasing the cost factor by 1 doubles the necessary time
@@ -91,7 +91,7 @@ module.exports = function (app) {
   });
 
   // log out and clear cookies
-  app.post("/logout", (req, res) => {
+  app.post('/logout', (req, res) => {
 
     // set cookie to all req.cookies
     cookie = req.cookies;
@@ -111,29 +111,31 @@ module.exports = function (app) {
   });
 
   // // delete a user by id
-  // app.delete("/delete/:id", function (req, res) {
+  // app.delete('/delete/:id', function (req, res) {
   //   db.Example.destroy({ where: { id: req.params.id } }).then(function (dbExample) {
   //     res.json(dbExample);
   //   });
   // });
 
   // change location
-  app.post("/location", (req, res) => {
+  app.post('/location', (req, res) => {
+    // returning empty object
+    console.log(req.body.location);
 
   });
 
   // get user's favorites
-  app.get("/favorites", (req, res) => {
+  app.get('/favorites', (req, res) => {
 
   });
 
   // add a favorite
-  app.get("/favorites/add", (req, res) => {
+  app.post('/favorites/add', (req, res) => {
 
   });
 
   // location data
-  app.post("/current/location", (req, res) => {
+  app.post('/current/location', (req, res) => {
     console.log(req.body);
   });
 
