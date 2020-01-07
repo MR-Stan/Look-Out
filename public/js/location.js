@@ -1,21 +1,17 @@
-// opens location modal on page load and prevents unwanted closure
+// login modal - google location autocomplete
 $(function () {
-    $('#locationModal').modal({
-        show: 'true',
-        //backdrop: 'static', // prevents closing by clicking out of modal
+    $("#locationModal").modal({
+        show: false
+    }).on("shown", function () {
+        const input = document.getElementById("locationInput");
+        const autocomplete = new google.maps.places.Autocomplete(input);
+        // google.maps.event.addListener(autocomplete, 'place_changed', function () {
+        // });
+        autocomplete.addListener('place_changed', function () {
+            const place = autocomplete.getPlace();
+        });
     });
+    $('#locationModal').modal('show');
+
 });
 
-
-
-// function newLocation (address) {
-//     return new Promise(function (resolve, reject) {
-//         geocoder.geocode({ 'address': address }, function (results, status) {
-//             if (status == google.maps.GeocoderStatus.OK) {
-//                 resolve(results);
-//             } else {
-//                 reject(Error("Geocode for address " + address + " was not successful for the following reason: " + status));
-//             }
-//         });
-//     });
-// }

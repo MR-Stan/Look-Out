@@ -119,7 +119,6 @@ module.exports = function (app) {
 
   // change location
   app.post('/location', (req, res) => {
-    // returning empty object
     console.log(req.body.location);
 
   });
