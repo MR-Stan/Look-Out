@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Change Location</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../styles/location.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <div class="login-form">
+        <div class="modal inmodal fade" data-keyboard="false" id="locationModal" tabindex="-1" role="dialog"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+
+                        <form method="POST" action="/location">
+
+                            <h2 class="text-center">Change Location</h2>
+
+                            <div class="form-group" id="formOrigin">
+                                <label class="formLabel" for="location" id='location'>Enter Location</label>
+                                <input type="text" class="form-control" name="location" id="locationInput"
+                                    placeholder="Enter location">
+                            </div>
+
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase font-weight-bold mb-2"
+                                type="submit">Change Location</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+{{!-- calls google API --}}
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyZWe0NA_xPe4SAUPxUrsg2l8tumvLcro&libraries=places"
+    type="text/javascript"></script>
+
+{{!-- <script type="text/javascript" src="/js/google.js"></script> --}}
+<script type="text/javascript" src="/js/location.js"></script>
+
+</html>

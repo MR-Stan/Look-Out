@@ -1,27 +1,42 @@
-var db = require("../models");
+const jwt = require("jsonwebtoken");
 
-module.exports = function(app) {
-  // Load index page
-  app.get("/", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.render("index", {
-        msg: "Welcome!",
-        examples: dbExamples
-      });
-    });
+module.exports = function (app) {
+
+  // render home page if user is authenticated
+  app.get('/', (req, res) => {
+
+    // obtain jwt from cookie
+    const token = req.cookies.jwt;
+
+    // if jwt.verify does not yield an error then render home.handlebars
+    try {
+      jwt.verify(token, "secretkey");
+      res.render("home");
+    }
+    // if jwt.verify yields an error then yield login.handlebars
+    catch (err) {
+      res.redirect("/login");
+    }
   });
 
-  // Load example page and pass in an example by id
-  app.get("/example/:id", function(req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.render("example", {
-        example: dbExample
-      });
-    });
+  // render log in modal
+  app.get("/login", (req, res) => {
+    res.render("login");
   });
 
-  // Render 404 page for any unmatched routes
-  app.get("*", function(req, res) {
+  // render sign up modal
+  app.get("/signup", (req, res) => {
+    res.render("signup");
+  });
+
+  // render change location modal
+  app.get("/location", (req, res) => {
+    res.render("location");
+  });
+
+  // render 404 page for any unmatched routes
+  app.get("*", function (req, res) {
     res.render("404");
   });
 };
+

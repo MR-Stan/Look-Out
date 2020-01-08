@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sign up Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="login-form">
+        <div class="modal inmodal fade" data-keyboard="false" id="signUpModal" tabindex="-1" role="dialog"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+
+                        <form method="POST" action="create/user">
+                            <h2 class="text-center">Sign Up</h2>
+
+                            <div class="form-label-group">
+                                <label for="username">Username</label>
+                                <input type="text" id="username" name="username" class="form-control"
+                                    placeholder="Username" required autofocus>
+                            </div>
+
+                            <div class="form-label-group">
+                                <label for="inputPassword">Password</label>
+                                <input type="password" id="inputPassword" name="password" class="form-control"
+                                    placeholder="Password" required>
+                            </div>
+
+
+                            <div class="form-label-group">
+                                <label for="firstname">First name</label>
+                                <input type="text" id="firstname" name="firstname" class="form-control"
+                                    placeholder="First name" required autofocus>
+                            </div>
+
+                            <div class="form-label-group">
+                                <label for="lastname">Last name</label>
+                                <input type="text" id="lastname" name="lastname" class="form-control"
+                                    placeholder="Last name" required autofocus>
+                            </div>
+
+                            <div class="form-label-group">
+                                <label for="inputEmail">Email address</label>
+                                <input type="email" id="inputEmail" name="email" class="form-control"
+                                    placeholder="Email address" required autofocus>
+
+                            </div>
+
+                            {{!-- <div class="custom-control custom-checkbox mb-3">
+                                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                <label class="custom-control-label" for="customCheck1">Remember password</label>
+                            </div> --}}
+
+                            <button
+                                class="btn btn-lg btn-primary btn-block btn-signup text-uppercase font-weight-bold mb-2"
+                                type="submit">Sign up</button>
+
+                            <div class="text-center">
+                                <a class="small" href="/login">Log in</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script src="/js/signup.js"></script>
+
+</html>
