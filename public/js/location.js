@@ -1,17 +1,20 @@
-// login modal - google location autocomplete
+// show login modal with google location autocomplete
 $(function () {
-    $("#locationModal").modal({
-        show: false
-    }).on("shown", function () {
+
+    // after the page loads, when the modal is shown
+    $(document).on('shown.bs.modal', '#locationModal', function () {
+        // setting input variable for ease of use
         const input = document.getElementById("locationInput");
-        const autocomplete = new google.maps.places.Autocomplete(input);
-        // google.maps.event.addListener(autocomplete, 'place_changed', function () {
-        // });
-        autocomplete.addListener('place_changed', function () {
+        // setting options
+        const options = { types: ['(cities)'] }
+        // setting google autocomplete to variable
+        const autocomplete = new google.maps.places.Autocomplete(input, options);
+        // event listener, when locationInput is changed update the list
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
             const place = autocomplete.getPlace();
         });
     });
-    $('#locationModal').modal('show');
 
+    $('#locationModal').modal('show');
 });
 
