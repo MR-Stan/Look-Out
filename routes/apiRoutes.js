@@ -121,6 +121,14 @@ module.exports = function (app) {
   app.post('/location', (req, res) => {
     console.log(req.body.location);
 
+    if (req.body.location) {
+      res.redirect('/location/' + req.body.location);
+    }
+
+  });
+
+  app.get('/location/:new', (req, res) => {
+
   });
 
   // get user's favorites
