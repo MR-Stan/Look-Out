@@ -136,6 +136,11 @@ module.exports = function (app) {
 
   });
 
+  // display chosen favorite
+  app.post('/favorites', (req, res) => {
+
+  });
+
   // add a favorite
   app.post('/favorites/add', (req, res) => {
 

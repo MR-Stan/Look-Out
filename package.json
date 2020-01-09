@@ -1,6 +1,9 @@
 {
   "name": "lookout",
   "version": "1.0.0",
+  "engines": {
+    "node": "12.13.0"
+  },
   "description": "An application to keep track of crime an your area",
   "main": "server.js",
   "scripts": {

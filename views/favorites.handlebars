@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Favorites</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="login-form">
+        <div class="modal inmodal fade" data-keyboard="false" id="signUpModal" tabindex="-1" role="dialog"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+
+                        <form method="POST" action="/favorites">
+                            <h2 class="text-center">Favorites</h2>
+
+                            <table class="table" id="favoritesTable">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Select</th>
+                                        <th scope="col">Favorite</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{!-- dynamic db data goes here --}}
+                                </tbody>
+
+                            </table>
+
+                            <button
+                                class="btn btn-lg btn-primary btn-block btn-signup text-uppercase font-weight-bold mb-2"
+                                type="submit">Load Favorite Location</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script src="/js/favorites.js"></script>
+
+</html>
