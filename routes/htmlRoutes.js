@@ -34,6 +34,16 @@ module.exports = function (app) {
     res.render("location");
   });
 
+  // render log in modal
+  app.get("/favorites", (req, res) => {
+    res.render("favorites");
+  });
+
+  // render sign up modal
+  app.get("/newfavorite", (req, res) => {
+    res.render("newFavorite");
+  });
+
   // render 404 page for any unmatched routes
   app.get("*", function (req, res) {
     res.render("404");

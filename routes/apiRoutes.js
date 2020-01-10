@@ -132,9 +132,9 @@ module.exports = function (app) {
   });
 
   // get user's favorites
-  app.get('/favorites', (req, res) => {
-
-  });
+  // app.get('/favorites', (req, res) => {
+    
+  // });
 
   // display chosen favorite
   app.post('/favorites', (req, res) => {
