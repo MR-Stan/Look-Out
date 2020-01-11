@@ -7,6 +7,9 @@ const jwt = require('jsonwebtoken');
 // npm bcryptjs - password encryption
 const bcrypt = require('bcryptjs');
 
+// npm spotcrime - crime api
+const spotcrime = require('spotcrime');
+
 module.exports = function (app) {
 
   // parsing form data
@@ -119,21 +122,13 @@ module.exports = function (app) {
 
   // change location
   app.post('/location', (req, res) => {
-    console.log(req.body.location);
 
-    if (req.body.location) {
-      res.redirect('/location/' + req.body.location);
-    }
-
-  });
-
-  app.get('/location/:new', (req, res) => {
-
+    
   });
 
   // get user's favorites
   // app.get('/favorites', (req, res) => {
-    
+
   // });
 
   // display chosen favorite
@@ -148,7 +143,26 @@ module.exports = function (app) {
 
   // location data
   app.post('/current/location', (req, res) => {
-    console.log(req.body);
+
+    // location data
+    const loc = {
+      lat: req.body.lat,
+      lon: req.body.lng
+    }
+
+    // radius to display
+    const radius = 0.01; // this is miles
+
+    // api call
+    spotcrime.getCrimes(loc, radius).then((crimes) => {
+      for (let i = 0; i < crimes.length; i++) {
+        const type = crimes[i].type;
+        const address = crimes[i].address;
+        const date = crimes[i].date;
+        console.log(type + ', ' + address + ', ' + date)
+      }
+
+    });
   });
 
 }
