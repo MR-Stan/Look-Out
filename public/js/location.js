@@ -12,6 +12,8 @@ $(function () {
         // event listener, when locationInput is changed update the list
         google.maps.event.addListener(autocomplete, 'place_changed', function () {
             const place = autocomplete.getPlace();
+            // const lat = place.geometry.location.lat();
+            // const lng = place.geometry.location.lng();
         });
     });
 

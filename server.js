@@ -1,6 +1,9 @@
 // Dependencies
 // ----------------------------------------------------
 
+// npm dotenv - used to hide API keys
+require('dotenv').config();
+
 // npm path - joins paths with out platform specific delimiters
 const path = require("path");
 
@@ -68,7 +71,7 @@ require('./routes/htmlRoutes')(app);
 // ----------------------------------------------------
 
 // 
-var syncOptions = { force: false };
+const syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
