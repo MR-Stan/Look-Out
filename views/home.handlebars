@@ -14,23 +14,64 @@
 
 </head>
 
+
 <body>
+
+
+  {{!-- slide out menu --}}
+
+  <span onclick="openNav()" id="burger">&#9776;</span>
+  <nav id="mysidenav" class="sidenav">
+
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    {{!-- <a><img class="hpLogo" src="assets/images/nom_nom_logo.png" alt="nomNomLogo" id="Insert_logo" /></a> --}}
+    <a class="navbar-btn mb-4" id="myProfile">My Profile</a>
+    {{!-- <a href="favorites.handlebars" class="nav-link mt-4" id="myRecipesSignedout">Favorites</a> --}}
+    <li class="nav-item">
+      {{!-- access favorites --}}
+      <form class="clearfix mb-4" method="GET" action="/favorites">
+        <button class="btn btn-link navbar-btn">Favorites</button>
+      </form>
+    </li>
+    {{!-- <a href="newFavorite.handlebars" id="loginLink" class="nav-link">Add Favorite</a> --}}
+    <form class="clearfix mb-4" method="GET" action="/newfavorite">
+      <button class="btn btn-link navbar-btn">Add Favorite</button>
+    </form>
+    {{!-- <a href="login.handlebars" id="logoutLink" class="nav-link">Logout</a> --}}
+    <form class="clearfix mb-4" method="POST" action="/logout">
+      <button class="btn btn-link navbar-btn">Logout</button>
+    </form>
+  </nav>
+
+  {{!-- body --}}
 
   <div id="home">
     <div class="container">
       <div class="row">
         <div class="col-8 offset-2">
-          <h2>This is our Home Page!</h2>
+          <div class="container">
+            {{!-- change location --}}
+            <form class="clearfix mb-4" method="GET" action="/location">
+              <button class="btn btn-link changeLocation-btn">Change Location</button>
+            </form>
+          </div>
+
+
+
           <!-- holds google map -->
           <div id="map"></div>
         </div>
       </div>
     </div>
   </div>
-  
 
+
+
+
+  {{!-- API's --}}
   {{!-- calls google API --}}
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyZWe0NA_xPe4SAUPxUrsg2l8tumvLcro&callback=initMap"
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyZWe0NA_xPe4SAUPxUrsg2l8tumvLcro&callback=initMap"
     type="text/javascript"></script>
 
   <script src="/js/home.js"></script>

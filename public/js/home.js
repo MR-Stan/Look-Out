@@ -69,3 +69,12 @@ function toggleBounce() {
     }
 }
 
+function openNav() {
+    $("#mysidenav").css({ "transform": "translateX(0)" });
+};
+
+function closeNav() {
+    $("#mysidenav").css({ "transform": "translateX(-100%)" });
+};
+
+
