@@ -143,7 +143,7 @@ module.exports = function (app) {
 
   // location data
   app.post('/location/current', (req, res) => {
-
+    //console.log(req.body);
     // location data from autocomplete
     const loc = {
       lat: req.body.lat,
@@ -155,9 +155,14 @@ module.exports = function (app) {
 
     // api call
     spotcrime.getCrimes(loc, radius).then((crimes) => {
-      res.send(crimes)
+      res.send(crimes);
     });
 
   });
+
+  // app.post('/location/new', (req, res) => {
+  //   console.log(req.body);
+  //   res.redirect('/location/current');
+  // });
 
 }

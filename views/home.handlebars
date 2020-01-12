@@ -6,17 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Home</title>
-  {{!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> --}}
   <link rel="stylesheet" type="text/css" href="../styles/home.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  {{!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> --}}
-
 </head>
 
 
 <body>
-  <a href=""><img class="hpLogo" src="../images/lookoutlogo.png" alt="loLogo" id="lookoutLogo" /></a>
+  <a href="/"><img class="hpLogo" src="../images/lookoutlogo.png" alt="loLogo" id="lookoutLogo" /></a>
 
 
   {{!-- slide out menu --}}
@@ -26,7 +22,7 @@
 
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     {{!-- <a><img class="hpLogo" src="assets/images/nom_nom_logo.png" alt="nomNomLogo" id="Insert_logo" /></a> --}}
-    <a class="navbar-btn mb-4" id="myProfile">My Profile</a>
+    <a class="navbar-btn mb-4" id="myProfile">Menu</a>
     {{!-- <a href="favorites.handlebars" class="nav-link mt-4" id="myRecipesSignedout">Favorites</a> --}}
     <li class="nav-item">
       {{!-- access favorites --}}
@@ -58,6 +54,24 @@
           </div>
           <!-- holds google map -->
           <div id="map"></div>
+
+          <br><br><br>
+
+          <table class="table" id="crimeTable">
+            <thead>
+              <tr>
+                <th scope="col">Type</th>
+                <th scope="col">Date</th>
+                <th scope="col">Location</th>
+              </tr>
+            </thead>
+            <tbody id="crimeBody">
+              {{!-- dynamic db data goes here --}}
+            </tbody>
+
+          </table>
+
+
         </div>
       </div>
     </div>

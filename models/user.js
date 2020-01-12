@@ -50,12 +50,12 @@ module.exports = function (sequelize, DataTypes) {
     userpw: {
       type: DataTypes.STRING,
       notNull: true,
-      // validate: {
-      //   len: {
-      //     args: [4, 50],
-      //     msg: "Password must be between 4 and 50 characters"
-      //   }
-      // }
+      validate: {
+        len: {
+          args: [4, 5000000],
+          msg: "Password must be more than between 6 characters"
+        }
+      }
     },
 
     // user's email address 

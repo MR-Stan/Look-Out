@@ -27,7 +27,7 @@ $(function () {
     $('#changeLocationBtn').click(function (event) {
         event.preventDefault();
 
-        $("<form method='POST' action='/location/new'/>")
+        $("<form method='POST' action='/location/current'/>")
             .append("<input type='hidden' name='lat' value=" + lat + " />")
             .append("<input type='hidden' name='lng' value=" + lng + " />")
             .appendTo("body")

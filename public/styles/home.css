@@ -9,6 +9,7 @@ body, html, #map {
 #map {
   min-width: 50vw;
   min-height: 50vh;
+  max-height: 500px;
   border: 1px solid black;
   border-radius: 10px;
 }
@@ -20,9 +21,7 @@ body, html, #map {
   font-size:40px;
   cursor:pointer;
   color: #FF5758;
-  
 }
-
 
 .sidenav{
   height: 100%;
@@ -73,4 +72,7 @@ body, html, #map {
   color: white;
 }
 
+#crimeTable {
+  background-color: #ffff;
+}
 
