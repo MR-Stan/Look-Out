@@ -1,3 +1,24 @@
 .btn-link {
-    text-decoration: none;
+    text-decoration: none;   
 }
+
+#lookoutLogo {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translate(-50%);
+    width: 100px;
+    
+}
+  
+  .hpLogo {
+    width: 150px;
+    height: auto;
+    padding-left: 1rem;
+    
+  }
+
+  #navbarNav {
+      padding-bottom: 20px;
+  }
+

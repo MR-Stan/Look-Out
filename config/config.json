@@ -1,0 +1,21 @@
+{
+    "development": {
+        "username": "root",
+        "password": "Esherichia666",
+        "database": "lookout_db",
+        "host": "localhost",
+        "dialect": "mysql"
+    },
+    "test": {
+        "username": null,
+        "password": null,
+        "database": "lookout_db",
+        "host": "localhost",
+        "dialect": "mysql",
+        "logging": false
+    },
+    "production": {
+        "use_env_variable": "JAWSDB_URL",
+        "dialect": "mysql"
+    }
+}

@@ -40,18 +40,17 @@
 
 <body>
 
-  <!-- header from partial header.handlebars -->
-  {{> header }}
-
   <!-- body from home.handlebars -->
   {{{body}}}
 
   {{!-- log in modal script --}}
   {{{_loginModal.script}}}
 
-  <!-- footer from partial footer.handlebars -->
-  {{> footer }}
-
 </body>
+<footer class="page-footer font-small blue">
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+  </div>
+</footer>
 
 </html>

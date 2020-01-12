@@ -1,6 +1,9 @@
 {
   "name": "lookout",
   "version": "1.0.0",
+  "engines": {
+    "node": "12.13.0"
+  },
   "description": "An application to keep track of crime an your area",
   "main": "server.js",
   "scripts": {
@@ -27,14 +30,16 @@
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.4",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.0",
     "express-handlebars": "^3.1.0",
+    "google-map-marker": "^1.2.3",
     "googleapis": "^46.0.0",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^1.6.5",
     "path": "^0.12.7",
-    "request": "^2.88.0",
-    "sequelize": "^5.8.6"
+    "sequelize": "^5.8.6",
+    "spotcrime": "^2.0.1"
   },
   "devDependencies": {
     "chai": "^4.2.0",
