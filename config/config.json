@@ -1,7 +1,7 @@
 {
     "development": {
-        "username": null,
-        "password": null,
+        "username": "root",
+        "password": "Esherichia666",
         "database": "lookout_db",
         "host": "localhost",
         "dialect": "mysql"

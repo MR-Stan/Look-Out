@@ -11,17 +11,11 @@ function initMap() {
     // map center and zoom
     map = new google.maps.Map(
         document.getElementById('map'), {
-        zoom: 14,
+        zoom: 11,
         center: pos
     });
-    // marker location
-    marker = new google.maps.Marker({
-        position: pos,
-        map: map,
-        animation: google.maps.Animation.DROP
-    });
     infoWindow = new google.maps.InfoWindow;
-    marker.addListener('click', toggleBounce);
+
     // if browser supports geolocation
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
@@ -32,14 +26,16 @@ function initMap() {
 
             infoWindow.open(map);
             map.setCenter(pos);
-            // updates marker location
-            marker.setPosition(pos);
 
             // sending location data to apiRoutes.js
             $.ajax({
                 type: 'POST',
-                url: '/current/location',
-                data: pos
+                url: '/location/current',
+                data: pos,
+                success: function (data) {
+                    addMarker(data);
+                    updateTable(data);
+                }
             });
 
         }, function () {
@@ -48,6 +44,20 @@ function initMap() {
     } else {
         // browser doesn't support Geolocation
         handleLocationError(false, infoWindow, map.getCenter());
+    }
+}
+
+// adds crime markers
+function addMarker(data) {
+    for (let i = 0; i < data.length; i++) {
+        marker = new google.maps.Marker({
+            position: {
+                lat: parseFloat(data[i].lat),
+                lng: parseFloat(data[i].lon)
+            },
+            map: map,
+            title: data[i].type
+        });
     }
 }
 
@@ -60,12 +70,9 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.open(map);
 }
 
-// marker bounce animation
-function toggleBounce() {
-    if (marker.getAnimation() !== null) {
-        marker.setAnimation(null);
-    } else {
-        marker.setAnimation(google.maps.Animation.BOUNCE);
+//updates table with crime data
+function updateTable(data) {
+    for (let i = 0; i < data.length; i++) {
+        console.log(data[i]);
     }
 }
-

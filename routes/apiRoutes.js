@@ -123,7 +123,7 @@ module.exports = function (app) {
   // change location
   app.post('/location', (req, res) => {
 
-    
+
   });
 
   // get user's favorites
@@ -142,27 +142,22 @@ module.exports = function (app) {
   });
 
   // location data
-  app.post('/current/location', (req, res) => {
+  app.post('/location/current', (req, res) => {
 
-    // location data
+    // location data from autocomplete
     const loc = {
       lat: req.body.lat,
       lon: req.body.lng
     }
 
     // radius to display
-    const radius = 0.01; // this is miles
+    const radius = 0.1; // this is miles
 
     // api call
     spotcrime.getCrimes(loc, radius).then((crimes) => {
-      for (let i = 0; i < crimes.length; i++) {
-        const type = crimes[i].type;
-        const address = crimes[i].address;
-        const date = crimes[i].date;
-        console.log(type + ', ' + address + ', ' + date)
-      }
-
+      res.send(crimes)
     });
+
   });
 
 }
