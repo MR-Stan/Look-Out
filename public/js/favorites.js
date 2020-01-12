@@ -1,14 +1,4 @@
 
-// pull favorites from db
-
-// convert favorites to array
-
-// for (const i = 0, i < favorites.length, i++) { 
-//  $('#favoritesTable').bootstrapTable('insertRow', {
-
-// });
-// }
-
 {/* <tr>
     <th scope='row'>
         <div class='custom-control custom-checkbox mb-3'>
@@ -18,8 +8,24 @@
 //      </th>
 // </tr> */}
 
-    $(function () {
-        $('#favoritesModal').modal({
-            show: 'true',
-        });
+$(function () {
+    $('#favoritesModal').modal({
+        show: 'true',
+    });
 });
+
+function displayFavorites() {
+    let favorites;
+    // get favorites data from server
+    $.get('/favorites/all', function (data) {
+        favorites = data.split(';');
+    }).then(function () {
+        // placing favorites data in favorites table
+        for (let i = 0; i < favorites.length; i++) {
+            $('#tableBody').append('<tr/>').append('<td>' + favorites[i] + '</td>');
+        }
+    });
+
+}
+
+displayFavorites();

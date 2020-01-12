@@ -55,7 +55,6 @@ module.exports = function (app) {
           // if passwords do not match
           else {
             // redirect to login modal
-            // need to add text saying passwords do not match
             res.redirect('/login');
           }
         });
@@ -111,27 +110,35 @@ module.exports = function (app) {
 
   });
 
-  // // delete a user by id
-  // app.delete('/delete/:id', function (req, res) {
-  //   db.Example.destroy({ where: { id: req.params.id } }).then(function (dbExample) {
-  //     res.json(dbExample);
-  //   });
-  // });
-
-  // change location
-  app.post('/location', (req, res) => {
-
-
-  });
-
   // get user's favorites
-  // app.get('/favorites', (req, res) => {
-
-  // });
-
-  // display chosen favorite
-  app.post('/favorites', (req, res) => {
-
+  app.get('/favorites/all', (req, res) => {
+    // obtain jwt from cookie
+    const token = req.cookies.jwt;
+    // if jwt.verify does not yield an error then 
+    try {
+      // set username to username from decoded jwt
+      const username = (jwt.verify(token, "secretkey")).username;
+      // search database for username
+      db.User.findOne({
+        where: {
+          username: username
+        }
+        // return data where username is found
+      }).then(function (data) {
+        // if favorites exist
+        if (data.favorites) {
+          res.json(data.favorites);
+        }
+        else {
+          // need to return no favorites message
+          res.json('No data');
+        }
+      });
+    }
+    // if jwt.verify yields an error 
+    catch (err) {
+      throw err;
+    }
   });
 
   // add a favorite
@@ -208,16 +215,15 @@ module.exports = function (app) {
     }
   });
 
-  // location data
+  // get crime data for current location
   app.post('/location/current', (req, res) => {
-    //console.log(req.body);
     // location data from autocomplete
     const loc = {
       lat: req.body.lat,
       lon: req.body.lng
     }
 
-    // radius to display
+    // radius for crime data
     const radius = 0.1; // this is miles
 
     // api call
@@ -227,13 +233,12 @@ module.exports = function (app) {
 
   });
 
+  // update location
   app.post('/location/new', (req, res) => {
-    const loc = {
-      lat: req.body.lat,
-      lon: req.body.lng
-    }
-
-    res.send(loc);
+    // redirect home
+    res.redirect('/');
   });
+
+
 
 }
