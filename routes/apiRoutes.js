@@ -155,13 +155,10 @@ module.exports = function (app) {
         if (data.favorites) {
           // create an array of store favorites string
           let favorites = data.favorites.split(';');
-          console.log(favorites.length);
           // check if one favorite exists
           if (favorites.length === 1) {
             // check if the one favorite matches current location
-            console.log(favorites);
-            console.log(location);
-            if (favorites === location) {
+            if (favorites[0] === location) {
               // if so, do nothing
             }
             // if the stored favorite doesn't match current location
@@ -171,36 +168,28 @@ module.exports = function (app) {
                 favorites: data.favorites + ';' + location
               }).then(function (user) {
                 // redirect home
-                console.log('redirect 1 favorite doesn\'t match');
-                console.log(user.favorites);
                 res.redirect('/');
               });
             }
           }
           // if more than one favorites exist
           else {
-            // let favorites = data.favorites.split(';');
-            console.log(favorites);
+            let flag = false;
             // for each of the favorites
             for (let i = 0; i < favorites.length; i++) {
               // check if current location matches
               if (favorites[i] === location) {
-                console.log('match');
-              }
-              else {
-                console.log('not match');
-                data.update({
-                  favorites: data.favorites + ';' + location
-                }).then(function (user) {
-                  // redirect home
-                  res.redirect('/');
-                });
+                flag = true;
               }
             }
-
+            if (!flag) {
+              data.update({
+                favorites: data.favorites + ';' + location
+              })
+            }
+            res.redirect('/');
           }
         }
-        //}
         // if favorites is null then
         else {
           // replace null with current location
@@ -208,7 +197,6 @@ module.exports = function (app) {
             favorites: location
           }).then(function (user) {
             // redirect to home page 
-            console.log('redirect replaced null');
             res.redirect('/');
           });
         }
@@ -216,7 +204,7 @@ module.exports = function (app) {
     }
     // if jwt.verify yields an error 
     catch (err) {
-      console.log(err);
+      throw err;
     }
   });
 
