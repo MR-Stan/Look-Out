@@ -1,9 +1,9 @@
 // show login modal with google location autocomplete
 $(function () {
 
-    let lat = "";
+    let lat;
 
-    let lng = "";
+    let lng;
 
     // after the page loads, when the modal is shown
     $(document).on('shown.bs.modal', '#locationModal', function () {
@@ -27,7 +27,7 @@ $(function () {
     $('#changeLocationBtn').click(function (event) {
         event.preventDefault();
 
-        $("<form method='POST' action='/location/current'/>")
+        $("<form method='POST' action='/location/new'/>")
             .append("<input type='hidden' name='lat' value=" + lat + " />")
             .append("<input type='hidden' name='lng' value=" + lng + " />")
             .appendTo("body")

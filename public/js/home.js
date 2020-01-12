@@ -6,6 +6,23 @@ let marker;
 
 let pos;
 
+// $.post('/location/new', (req, res) => {
+//     console.log(res.body);
+// });
+
+// fetch('/location/new', (req, res) => {
+//     //console.log(req);
+//     console.log(res);
+// });
+
+// let response = fetch('/location/new');
+
+// if (response.ok) {
+//     let json = response.json();
+//     console.log(json);
+// }   
+
+
 if (pos === undefined) {
     // if browser supports geolocation
     if (navigator.geolocation) {

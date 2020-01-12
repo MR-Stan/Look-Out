@@ -82,8 +82,6 @@ module.exports = function (app) {
           firstname: req.body.firstname,
           lastname: req.body.lastname,
           email: req.body.email,
-          // defaultlocation: ,
-          // favorites: [],
         }).then(function (response) {
           if (response) {
             res.redirect('/');
@@ -138,7 +136,88 @@ module.exports = function (app) {
 
   // add a favorite
   app.post('/favorites/add', (req, res) => {
+    // set location to formatted current location
+    const location = '(' + req.body.lat + ', ' + req.body.lng + ')';
+    // obtain jwt from cookie
+    const token = req.cookies.jwt;
+    // if jwt.verify does not yield an error then 
+    try {
+      // set username to username from decoded jwt
+      const username = (jwt.verify(token, "secretkey")).username;
+      // search database for username
+      db.User.findOne({
+        where: {
+          username: username
+        }
+        // return data where username is found
+      }).then(function (data) {
+        // if returned data has not null favorites then
+        if (data.favorites) {
+          // create an array of store favorites string
+          let favorites = data.favorites.split(';');
+          console.log(favorites.length);
+          // check if one favorite exists
+          if (favorites.length === 1) {
+            // check if the one favorite matches current location
+            console.log(favorites);
+            console.log(location);
+            if (favorites === location) {
+              // if so, do nothing
+            }
+            // if the stored favorite doesn't match current location
+            else {
+              // add current location to stored favorites
+              data.update({
+                favorites: data.favorites + ';' + location
+              }).then(function (user) {
+                // redirect home
+                console.log('redirect 1 favorite doesn\'t match');
+                console.log(user.favorites);
+                res.redirect('/');
+              });
+            }
+          }
+          // if more than one favorites exist
+          else {
+            // let favorites = data.favorites.split(';');
+            console.log(favorites);
+            // for each of the favorites
+            for (let i = 0; i < favorites.length; i++) {
+              // check if current location matches
+              if (favorites[i] === location) {
+                console.log('match');
+              }
+              else {
+                console.log('not match');
+                data.update({
+                  favorites: data.favorites + ';' + location
+                }).then(function (user) {
+                  // redirect home
+                  res.redirect('/');
+                });
+              }
+            }
 
+          }
+        }
+        //}
+        // if favorites is null then
+        else {
+          // replace null with current location
+          data.update({
+            favorites: location
+          }).then(function (user) {
+            // redirect to home page 
+            console.log('redirect replaced null');
+            res.redirect('/');
+          });
+        }
+      });
+    }
+    // if jwt.verify yields an error 
+    catch (err) {
+      console.log(err);
+    }
   });
 
   // location data
@@ -160,9 +239,13 @@ module.exports = function (app) {
 
   });
 
-  // app.post('/location/new', (req, res) => {
-  //   console.log(req.body);
-  //   res.redirect('/location/current');
-  // });
+  app.post('/location/new', (req, res) => {
+    const loc = {
+      lat: req.body.lat,
+      lon: req.body.lng
+    }
+
+    res.send(loc);
+  });
 
 }
