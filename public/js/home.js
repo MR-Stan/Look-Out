@@ -76,8 +76,6 @@ function updateTable(data) {
         console.log(data[i]);
     }
 }
-<<<<<<< HEAD
-=======
 
 function openNav() {
     $("#mysidenav").css({ "transform": "translateX(0)" });
@@ -86,6 +84,3 @@ function openNav() {
 function closeNav() {
     $("#mysidenav").css({ "transform": "translateX(-100%)" });
 };
-
-
->>>>>>> a493d9d08f569eaef1911b64dadf8eb53e451afa
