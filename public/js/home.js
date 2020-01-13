@@ -8,6 +8,7 @@ let pos = {
     lat: parseFloat(sessionStorage.lat),
     lng: parseFloat(sessionStorage.lng)
 }
+
 // if session storage is empty will return NaN
 if (isNaN(pos.lat)) {
     // if browser supports geolocation
@@ -45,6 +46,9 @@ function initMap() {
         success: function (data) {
             addMarker(data);
             updateTable(data);
+        },
+        error: function (error) {
+            console.log(error);
         }
     });
 }

@@ -72,7 +72,7 @@ module.exports = function (app) {
     bcrypt.genSalt(saltRounds, function (err, salt) {
       bcrypt.hash(textPassword, salt, function (err, hash) {
         if (err) {
-          throw err;
+          console.log(err);
         }
         // need to fill in missing fields
         db.User.create({
@@ -137,7 +137,7 @@ module.exports = function (app) {
     }
     // if jwt.verify yields an error 
     catch (err) {
-      throw err;
+      console.log(err);
     }
   });
 
@@ -211,7 +211,7 @@ module.exports = function (app) {
     }
     // if jwt.verify yields an error 
     catch (err) {
-      throw err;
+      console.log(err);
     }
   });
 
@@ -229,6 +229,8 @@ module.exports = function (app) {
     // api call
     spotcrime.getCrimes(loc, radius).then((crimes) => {
       res.send(crimes);
+    }).catch(function (error) {
+      console.log(error);
     });
 
   });
