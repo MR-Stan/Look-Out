@@ -14,7 +14,7 @@ module.exports = function (app) {
 
   // parsing form data
   app.post('/login/submit', (req, res) => {
-    res.redirect('/login/' + req.body.username + '/' + req.body.password)
+    res.redirect('/login/' + req.body.username.trim() + '/' + req.body.password.trim())
   });
 
   // user login
@@ -64,7 +64,7 @@ module.exports = function (app) {
 
   // create a new user
   app.post('/create/user', (req, res) => {
-    let textPassword = req.body.password;
+    let textPassword = req.body.password.trim();
     // salt round = cost factor i.e. how much time is needed to calculate a single bcrypt hash
     // increasing the cost factor by 1 doubles the necessary time
     // more time means harder to brute force crack the password
@@ -76,11 +76,11 @@ module.exports = function (app) {
         }
         // need to fill in missing fields
         db.User.create({
-          username: req.body.username,
+          username: req.body.username.trim(),
           userpw: hash,
-          firstname: req.body.firstname,
-          lastname: req.body.lastname,
-          email: req.body.email,
+          firstname: req.body.firstname.trim(),
+          lastname: req.body.lastname.trim(),
+          email: req.body.email.trim(),
         }).then(function (response) {
           if (response) {
             res.redirect('/');
@@ -131,7 +131,7 @@ module.exports = function (app) {
         }
         else {
           // need to return no favorites message
-          res.json('No data');
+          res.json('You haven\'t added any favorites!');
         }
       });
     }

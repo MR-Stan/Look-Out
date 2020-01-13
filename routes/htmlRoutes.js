@@ -5,7 +5,6 @@ module.exports = function (app) {
   // render home page if user is authenticated
   app.get('/', (req, res) => {
 
-
     // obtain jwt from cookie
     const token = req.cookies.jwt;
 
