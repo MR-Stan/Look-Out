@@ -22,7 +22,10 @@ $(function () {
         });
     });
     // show change location modal
-    $('#locationModal').modal('show');
+    $('#locationModal').modal({
+        show: 'true',
+        backdrop: 'static' // prevents closing by clicking out of modal
+    });
     // when change location submit button is pressed
     $('#changeLocationBtn').click(function (event) {
         event.preventDefault();

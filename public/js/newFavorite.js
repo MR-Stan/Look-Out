@@ -1,6 +1,7 @@
 $(function () {
     $('#newFavoriteModal').modal({
-        show: 'true'
+        show: 'true',
+        backdrop: 'static'
     })
 });
 

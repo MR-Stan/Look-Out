@@ -2,6 +2,6 @@
 $(function () {
     $('#signUpModal').modal({
         show: 'true',
-        backdrop: 'static', // prevents closing by clicking out of modal
+        backdrop: 'static' // prevents closing by clicking out of modal
     });
 });

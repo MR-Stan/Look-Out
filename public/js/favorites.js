@@ -11,6 +11,7 @@
 $(function () {
     $('#favoritesModal').modal({
         show: 'true',
+        backdrop: 'static'
     });
 });
 
