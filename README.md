@@ -14,8 +14,8 @@ Look Out is a mobile-responsive web application that...
 
 5. Inside config/config.json enter in the username and password for your server. If you do not you WILL get a connection refused error. Please enter username and password in the following format:
 
-*"username": "{your mysql username},
-*"password": "{your mysql password}",
+* "username": "{your mysql username},
+* "password": "{your mysql password}",
 
 6. Run the following command in your terminal/console to start the node server: node server.js
 
