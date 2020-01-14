@@ -1,10 +1,11 @@
+
+
 // show login modal with google location autocomplete
 $(function () {
-
-    let lat = "";
-
-    let lng = "";
-
+    // hold latitude data
+    let lat;
+    // hold longitude data
+    let lng;
     // after the page loads, when the modal is shown
     $(document).on('shown.bs.modal', '#locationModal', function () {
         // setting input variable for ease of use
@@ -20,20 +21,23 @@ $(function () {
             lng = place.geometry.location.lng();
         });
     });
-
-    $('#locationModal').modal('show');
-
-
+    // show change location modal
+    $('#locationModal').modal({
+        show: 'true',
+        backdrop: 'static' // prevents closing by clicking out of modal
+    });
+    // when change location submit button is pressed
     $('#changeLocationBtn').click(function (event) {
         event.preventDefault();
-
-        $("<form method='POST' action='/location/current'/>")
+        // http post data
+        $("<form method='POST' action='/location/new'/>")
             .append("<input type='hidden' name='lat' value=" + lat + " />")
             .append("<input type='hidden' name='lng' value=" + lng + " />")
             .appendTo("body")
             .submit();
-
+        // store new location in local storage
+        sessionStorage.lat = lat;
+        sessionStorage.lng = lng;
     });
-
 });
 

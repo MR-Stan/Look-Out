@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- local css -->
+<link rel="stylesheet" type="text/css" href="../styles/main.css">
 </head>
 
 <body>
@@ -21,12 +23,15 @@
                 <div class="modal-content">
                     <div class="modal-body">
 
-                        <form method="POST" action="/favorites/add">
+                        <form>
 
                             <button
                                 class="btn btn-lg btn-primary btn-block btn-signup text-uppercase font-weight-bold mb-2"
-                                type="submit">Add Current Location To Favorites</button>
+                                type="submit" id="addFavoriteBtn">Add Current Location To Favorites</button>
 
+                            <div class="text-center">
+                                <a class="small" href="/">Cancel</a>
+                            </div>
                         </form>
                     </div>
                 </div>

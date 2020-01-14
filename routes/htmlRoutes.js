@@ -4,7 +4,6 @@ module.exports = function (app) {
 
   // render home page if user is authenticated
   app.get('/', (req, res) => {
-    
 
     // obtain jwt from cookie
     const token = req.cookies.jwt;
@@ -35,12 +34,12 @@ module.exports = function (app) {
     res.render("location");
   });
 
-  // render log in modal
+  // render favorites modal
   app.get("/favorites", (req, res) => {
     res.render("favorites");
   });
 
-  // render sign up modal
+  // render new favorite modal
   app.get("/newfavorite", (req, res) => {
     res.render("newFavorite");
   });

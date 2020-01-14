@@ -1,78 +1,13 @@
-body, html, #map {
-  height:100%;
-  margin:0;
-  padding:0;
-  width:100%;
-  background-color:#282b3a;
-  }
-
-#map {
-  min-width: 50vw;
-  min-height: 50vh;
-  max-height: 500px;
-  border: 1px solid black;
-  border-radius: 10px;
+#map, #crimeTable {
+  min-height: 60vh;
+  min-width: 30vw;
+  max-height: 80vh;
 }
 
-#burger {
-  display: inline-block;
-  margin-left: 0px;
-  margin-top: 10px;
-  font-size:40px;
-  cursor:pointer;
-  color: #FF5758;
-}
-
-.sidenav{
+#logo {
   height: 100%;
-  width: 250px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #282b3a;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 15px;
-  transform: translateX(-250px);
-  border-style: solid;
-  border-color: #FF5758;
-
-}
-.sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-  color: #fff;
 }
 
-.sidenav .closebtn:hover {
-  text-decoration: none;
+.row {
+  border: 2px white solid;
 }
-
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
-
-#myProfile {
-  color: #ffff;
-  padding-left: 2vh;
-}
-
-.navbar-btn {
-  color: #FF5758;
-}
-
-.changeLocation-btn {
-  padding-left: 40vh;
-  padding-top: 10vh;
-  color: white;
-}
-
-#crimeTable {
-  background-color: #ffff;
-}
-

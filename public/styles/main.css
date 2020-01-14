@@ -1,0 +1,59 @@
+html, body {
+  height:100vh;
+  margin:0;
+  padding:0;
+  width:100vw;
+  background-color:#282b3a;
+  }
+
+#navSpan {
+  display: inline-block;
+  margin-left: 0px;
+  margin-top: 10px;
+  font-size:40px;
+  cursor:pointer;
+  color: #FF5758;
+}
+
+.sidenav{
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #282b3a;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 15px;
+  transform: translateX(-250px);
+  border-style: solid;
+  border-color: #FF5758;
+
+}
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  color: #fff;
+}
+
+.sidenav .closebtn:hover {
+  text-decoration: none;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+#myProfile {
+  color: #ffff;
+  padding-left: 2vh;
+}
+
+.navbar-btn {
+  color: #FF5758;
+}
