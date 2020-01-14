@@ -11,14 +11,8 @@
   <!-- font awesome -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <!-- local css for login.handlebars -->
-  <link rel="stylesheet" type="text/css" href="../styles/login.css">
-
-  <!-- local css for signup.handlebars -->
-  <link rel="stylesheet" type="text/css" href="../styles/signup.css">
-
-  <!-- local css for header.handlebars -->
-  <link rel="stylesheet" type="text/css" href="../styles/header.css">
+  <!-- local css for main.handlebars -->
+  <link rel="stylesheet" type="text/css" href="../styles/main.css">
 
   <!-- jquery -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -39,6 +33,35 @@
 </head>
 
 <body>
+  {{!-- slide out menu --}}
+  <span onclick="openNav()" id="navSpan">&#9776;</span>
+  <nav id="mysidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a class="navbar-btn mb-4" id="myProfile">Look Out Menu</a>
+    {{!-- change location --}}
+    <li class="nav-item">
+      <form class="clearfix mb-4" method="GET" action="/location">
+        <button class="btn btn-link navbar-btn">Change Location</button>
+      </form>
+    </li>
+    {{!-- access favorites --}}
+    <li class="nav-item">
+      <form class="clearfix mb-4" method="GET" action="/favorites">
+        <button class="btn btn-link navbar-btn">Favorites</button>
+      </form>
+      {{!-- new favorite --}}
+    </li>
+    <li class="nav-item">
+      <form class="clearfix mb-4" method="GET" action="/newfavorite">
+        <button class="btn btn-link navbar-btn">Add Favorite</button>
+      </form>
+      {{!-- log out --}}
+    <li class="nav-item">
+      <form class="clearfix mb-4" method="POST" action="/logout">
+        <button class="btn btn-link navbar-btn">Logout</button>
+      </form>
+    </li>
+  </nav>
 
   <!-- body from home.handlebars -->
   {{{body}}}
@@ -47,10 +70,5 @@
   {{{_loginModal.script}}}
 
 </body>
-{{!-- <footer class="page-footer font-small blue">
-  <div class="footer-copyright text-center py-3">© 2020 Copyright:
-    <a href="https://mdbootstrap.com/education/bootstrap/"> https://github.com/MR-Stan/Look-Out</a>
-  </div>
-</footer> --}}
 
 </html>

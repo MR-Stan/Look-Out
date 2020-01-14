@@ -1,8 +1,14 @@
+html, body {
+  height:100vh;
+  margin:0;
+  padding:0;
+  width:100vw;
+  background-color:#282b3a;
+  }
+
 .list-group-item {
   line-height: 2.5;
 }
-
-/* Modal CSS */
 
 .login-form {
   width: 385px;
@@ -71,4 +77,3 @@
   z-index: 1;
 }
 
-/* End Modal CSS */
