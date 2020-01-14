@@ -33,10 +33,20 @@
 </head>
 
 <body>
-  {{!-- slide out menu --}}
-  <span onclick="openNav()" id="navSpan">&#9776;</span>
+  <div class="row">
+    {{!-- slide out menu --}}
+    <div class="col-1 text-center">
+      <span onclick="openNav()" id="navSpan">&#9776;</span>
+    </div>
+    <div class="col-10 text-center">
+      <img class="img-fluid" src="../images/lookoutlogo.png" alt="loLogo" id="logo" />
+    </div>
+    <div class="col-1"></div>
+  </div>
+
   <nav id="mysidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
     <a class="navbar-btn mb-4" id="myProfile">Look Out Menu</a>
     {{!-- change location --}}
     <li class="nav-item">
@@ -70,5 +80,6 @@
   {{{_loginModal.script}}}
 
 </body>
+
 
 </html>
