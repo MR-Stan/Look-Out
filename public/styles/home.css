@@ -1,9 +1,13 @@
-#map {
+#map, #crimeTable {
   min-height: 60vh;
   min-width: 30vw;
   max-height: 80vh;
 }
 
 #logo {
-  height: 60%;
+  height: 100%;
+}
+
+.row {
+  border: 2px white solid;
 }
