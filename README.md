@@ -6,7 +6,7 @@ Look Out is a mobile-responsive web application that...
 *
 *
 *
-2. Clone the repository below: sh git@github.com:MR-Stan/Look-Out.git
+2. Clone the repository below: git clone git@github.com:MR-Stan/Look-Out.git
 
 3. Install dependencies: sh npm install
 
